@@ -1149,6 +1149,7 @@ int GammaEngine::Load() {
 
   if (folders_tm.size() == 0) {
     LOG(INFO) << "no folder is found, skip loading!";
+    b_loading_ = false;
     return 0;
   }
 
@@ -1167,6 +1168,14 @@ int GammaEngine::Load() {
       LOG(ERROR) << "load profile error, ret=" << ret;
       return -1;
     }
+
+    int field_num = table_->FieldsNum();
+    for (int i = 0; i < max_docid_; ++i) {
+      for (int j = 0; j < field_num; ++j) {
+          field_range_index_->Add(i, j);
+      }
+    }
+
     // load bitmap
     if (docids_bitmap_ == nullptr) {
       LOG(ERROR) << "docid bitmap is not initilized";

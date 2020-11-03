@@ -1,0 +1,10 @@
+tags
+*.swp
+*.swo
+/.settings
+/.buildpath
+/.project
+.DS_Store
+.idea
+/logs
+/output
